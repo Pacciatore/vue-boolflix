@@ -1,17 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <MainComponent />
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// Libraries import
+import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
+
+import MainComponent from '@/components/MainComponent.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      moviesApiUrl: 'https://api.themoviedb.org/3/',
+      myApiKey: '0b6447f7bfd63c42725507a256906e8f'
+    }
+  },
+  created() {
+    this.getApiResource();
+  },
+  methods: {
+
+    getApiResource() {
+      axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=ritorno+al+fut`)
+        .then(({ status, data }) => {
+          console.log(status, data)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
+
+  },
   components: {
-    HelloWorld
+    MainComponent
   }
 }
 </script>
@@ -21,8 +48,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
