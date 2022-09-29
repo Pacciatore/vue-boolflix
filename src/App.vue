@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <MainComponent />
+    <MainComponent :apiResults="results" />
 
   </div>
 </template>
@@ -18,7 +18,9 @@ export default {
   data() {
     return {
       moviesApiUrl: 'https://api.themoviedb.org/3/',
-      myApiKey: '0b6447f7bfd63c42725507a256906e8f'
+      myApiKey: '0b6447f7bfd63c42725507a256906e8f',
+
+      results: []
     }
   },
   created() {
@@ -27,9 +29,10 @@ export default {
   methods: {
 
     getApiResource() {
-      axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=ritorno+al+fut`)
+      axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=lego`)
         .then(({ status, data }) => {
           console.log(status, data)
+          this.results = data.results;
         })
         .catch((e) => {
           console.log(e)
