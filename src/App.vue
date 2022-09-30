@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <MainComponent :apiResults="results" />
+    <MainComponent :apiResults="results" @search="getFilms" />
 
   </div>
 </template>
@@ -28,6 +28,7 @@ export default {
   },
   methods: {
 
+    // Tutorial personale
     getApiResource() {
       axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=lego`)
         .then(({ status, data }) => {
@@ -37,6 +38,20 @@ export default {
         .catch((e) => {
           console.log(e)
         })
+    },
+
+    getFilms(textToSearch) {
+
+      axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=${textToSearch}`)
+        .then(({ status, data }) => {
+          console.log(status, data)
+          this.results = data.results;
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
+
     }
 
   },
