@@ -1,7 +1,10 @@
 <template>
   <div id="app">
 
-    <MainComponent :apiResults="results" @search="getFilms" />
+    <LoaderComponent v-if="loading" />
+    <MainComponent v-else-if="errorMessage.length === 0" :apiResults="results" @search="getFilms" />
+    <div v-else>{{ errorMessage }}</div>
+
 
   </div>
 </template>
@@ -12,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 
 import MainComponent from '@/components/MainComponent.vue';
+import LoaderComponent from '@/components/utils/LoaderComponent.vue';
 
 export default {
   name: 'App',
@@ -20,7 +24,10 @@ export default {
       moviesApiUrl: 'https://api.themoviedb.org/3/',
       myApiKey: '0b6447f7bfd63c42725507a256906e8f',
 
-      results: []
+      results: [],
+
+      loading: true,
+      errorMessage: ''
     }
   },
   created() {
@@ -32,22 +39,40 @@ export default {
     getApiResource() {
       axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=lego`)
         .then(({ status, data }) => {
-          console.log(status, data)
-          this.results = data.results;
+          this.loading = false;
+          if (status === 200) {
+            console.log(status, data)
+            this.results = data.results;
+          }
+          else {
+            this.errorMessage = 'Something went wrong...'
+          }
         })
         .catch((e) => {
+          this.loading = false;
+          this.errorMessage = 'Error: ' + e.message;
           console.log(e)
         })
     },
 
     getFilms(textToSearch) {
 
+      this.loading = true;
+
       axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=${textToSearch}`)
         .then(({ status, data }) => {
-          console.log(status, data)
-          this.results = data.results;
+          this.loading = false;
+          if (status === 200) {
+            console.log(status, data)
+            this.results = data.results;
+          }
+          else {
+            this.errorMessage = 'Something went wrong...'
+          }
         })
         .catch((e) => {
+          this.loading = false;
+          this.errorMessage = 'Error: ' + e.message;
           console.log(e)
         })
 
@@ -56,7 +81,8 @@ export default {
 
   },
   components: {
-    MainComponent
+    MainComponent,
+    LoaderComponent
   }
 }
 </script>

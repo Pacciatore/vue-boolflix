@@ -40,6 +40,7 @@ export default {
 
       let langFlag = '';
 
+      // Controllo i casi in cui il codice lingua non coincide col codice bandiera
       switch (result.original_language) {
         case 'ja':
           langFlag = 'jp'
@@ -63,9 +64,8 @@ export default {
           break;
       }
 
-
+      // Attribuisco il codice bandiera esatto e restituisco l'url
       const flagUrl = `https://flagcdn.com/16x12/${langFlag}.png`
-
       return flagUrl
     }
   }
