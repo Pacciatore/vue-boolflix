@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :apiResults="results" @search="getFilms" />
+    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :apiResults="results" @search="search" />
     <div v-else>{{ errorMessage }}</div>
 
 
@@ -12,6 +12,7 @@
 // Libraries import
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
+
 import { apiKey } from '@/env'
 
 import MainComponent from '@/components/MainComponent.vue';
@@ -24,49 +25,24 @@ export default {
 
       results: [],
 
-      loading: true,
+      loading: false,
       errorMessage: ''
     }
   },
-  created() {
-    this.getApiResource();
-  },
   methods: {
-
-    // Tutorial personale
-    getApiResource() {
-      axios.get(`${this.moviesApiUrl}search/movie?api_key=${apiKey}&query=lego`)
-        .then(({ status, data }) => {
-          this.loading = false;
-          if (status === 200) {
-            console.log(status, data)
-            this.results = data.results;
-          }
-          else {
-            this.errorMessage = 'Something went wrong...'
-          }
-        })
-        .catch((e) => {
-          this.loading = false;
-          this.errorMessage = 'Error: ' + e.message;
-          console.log(e)
-        })
+    // Slego la ricerca dalla chiamata API
+    search(query) {
+      this.queryApi(query)
     },
 
-    getFilms(textToSearch) {
+    queryApi(textToSearch) {
 
       this.loading = true;
 
-      axios.get(`${this.moviesApiUrl}search/movie?api_key=${apiKey}&query=${textToSearch}`)
-        .then(({ status, data }) => {
+      axios.get(`${this.apiUrl}search/movie?api_key=${apiKey}&query=${textToSearch}`)
+        .then((response) => {
           this.loading = false;
-          if (status === 200) {
-            console.log(status, data)
-            this.results = data.results;
-          }
-          else {
-            this.errorMessage = 'Something went wrong...'
-          }
+          this.results = this.getDataFromApiResponse(response);
         })
         .catch((e) => {
           this.loading = false;
@@ -74,7 +50,11 @@ export default {
           console.log(e)
         })
 
+    },
 
+    getDataFromApiResponse(response) {
+      console.log(response);
+      return response.status === 200 ? response.data.results : []
     }
 
   },
