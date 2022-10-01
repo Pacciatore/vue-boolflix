@@ -38,7 +38,7 @@ export default {
                     break;
             }
             // Attribuisco il codice bandiera esatto e restituisco l'url
-            const flagUrl = `https://flagcdn.com/16x12/${langFlag}.png`;
+            const flagUrl = `https://flagcdn.com/h20/${langFlag}.png`;
             return flagUrl;
         }
     }
