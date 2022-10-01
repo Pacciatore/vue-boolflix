@@ -12,6 +12,7 @@
 // Libraries import
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
+import { apiKey } from '@/env'
 
 import MainComponent from '@/components/MainComponent.vue';
 
@@ -19,8 +20,7 @@ export default {
   name: 'App',
   data() {
     return {
-      moviesApiUrl: 'https://api.themoviedb.org/3/',
-      myApiKey: '0b6447f7bfd63c42725507a256906e8f',
+      apiUrl: 'https://api.themoviedb.org/3/',
 
       results: [],
 
@@ -35,7 +35,7 @@ export default {
 
     // Tutorial personale
     getApiResource() {
-      axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=lego`)
+      axios.get(`${this.moviesApiUrl}search/movie?api_key=${apiKey}&query=lego`)
         .then(({ status, data }) => {
           this.loading = false;
           if (status === 200) {
@@ -57,7 +57,7 @@ export default {
 
       this.loading = true;
 
-      axios.get(`${this.moviesApiUrl}search/movie?api_key=${this.myApiKey}&query=${textToSearch}`)
+      axios.get(`${this.moviesApiUrl}search/movie?api_key=${apiKey}&query=${textToSearch}`)
         .then(({ status, data }) => {
           this.loading = false;
           if (status === 200) {
