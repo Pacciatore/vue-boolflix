@@ -1,7 +1,8 @@
 <template>
   <div id="app">
 
-    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :apiResults="results" @search="search" />
+    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :tvSeries="tvSeries" :apiResults="results"
+      @search="search" />
     <div v-else>{{ errorMessage }}</div>
 
 
@@ -24,6 +25,7 @@ export default {
       apiUrl: 'https://api.themoviedb.org/3/',
 
       results: [],
+      tvSeries: [],
 
       loading: false,
       errorMessage: ''
@@ -43,6 +45,17 @@ export default {
         .then((response) => {
           this.loading = false;
           this.results = this.getDataFromApiResponse(response);
+        })
+        .catch((e) => {
+          this.loading = false;
+          this.errorMessage = 'Error: ' + e.message;
+          console.log(e)
+        })
+
+      axios.get(`${this.apiUrl}search/tv?api_key=${apiKey}&language=it_IT&query=${textToSearch}`)
+        .then((response) => {
+          this.loading = false;
+          this.tvSeries = this.getDataFromApiResponse(response);
         })
         .catch((e) => {
           this.loading = false;

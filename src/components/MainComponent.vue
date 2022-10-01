@@ -9,8 +9,8 @@
     <LoaderComponent v-if="loading" />
 
     <!-- Elenco film risultato chiamata axios -->
-    <div v-else class="container">
-      <ul>
+    <div v-else class="container d-flex">
+      <ul class="col-5">
         <li v-for="result in apiResults" :key="result.id">
           <div class="title">Titolo: {{result.title}}</div>
           <div class="title">Titolo originale: {{result.original_title}}</div>
@@ -19,6 +19,12 @@
           <div class="title">Voto: {{result.vote_average}}</div>
         </li>
       </ul>
+
+      <div class="tv-series col-5">
+        <h2>Serie TV</h2>
+        <TvSerieCardComponent v-for="tvSerie in tvSeries" :key="tvSerie.id" :tv="tvSerie" />
+      </div>
+
     </div>
 
   </div>
@@ -27,6 +33,8 @@
 <script>
 import SearchComponent from '@/components/utils/SearchComponent.vue';
 import LoaderComponent from '@/components/utils/LoaderComponent.vue';
+
+import TvSerieCardComponent from '@/components/content/TvSerieCardComponent.vue';
 
 
 export default {
@@ -38,6 +46,7 @@ export default {
   },
   props: {
     apiResults: Array,
+    tvSeries: Array,
     loading: Boolean
   },
   methods: {
@@ -80,7 +89,8 @@ export default {
   },
   components: {
     SearchComponent,
-    LoaderComponent
+    LoaderComponent,
+    TvSerieCardComponent
   }
 }
 </script>
