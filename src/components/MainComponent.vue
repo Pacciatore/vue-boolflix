@@ -10,15 +10,10 @@
 
     <!-- Elenco film risultato chiamata axios -->
     <div v-else class="container d-flex">
-      <ul class="col-5">
-        <li v-for="result in apiResults" :key="result.id">
-          <div class="title">Titolo: {{result.title}}</div>
-          <div class="title">Titolo originale: {{result.original_title}}</div>
-          <div class="title">Lingua originale: <span><img :src="getLanguageFlag(result)"
-                :alt="result.original_language"></span></div>
-          <div class="title">Voto: {{result.vote_average}}</div>
-        </li>
-      </ul>
+      <div class="movies col-5">
+        <h2>Film</h2>
+        <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie" />
+      </div>
 
       <div class="tv-series col-5">
         <h2>Serie TV</h2>
@@ -35,6 +30,7 @@ import SearchComponent from '@/components/utils/SearchComponent.vue';
 import LoaderComponent from '@/components/utils/LoaderComponent.vue';
 
 import TvSerieCardComponent from '@/components/content/TvSerieCardComponent.vue';
+import MovieCardComponent from '@/components/content/MovieCardComponent.vue';
 
 
 export default {
@@ -45,7 +41,7 @@ export default {
     };
   },
   props: {
-    apiResults: Array,
+    movies: Array,
     tvSeries: Array,
     loading: Boolean
   },
@@ -90,7 +86,8 @@ export default {
   components: {
     SearchComponent,
     LoaderComponent,
-    TvSerieCardComponent
+    TvSerieCardComponent,
+    MovieCardComponent
   }
 }
 </script>
