@@ -1,25 +1,34 @@
 <template>
-  <div class="container pt-5">
+  <div>
 
     <!-- Utilizzo di un componente per la ricerca -->
-    <SearchComponent @search="getSearchText" />
+    <div class="container py-5">
+      <SearchComponent @search="getSearchText" />
+    </div>
+
+    <LoaderComponent v-if="loading" />
 
     <!-- Elenco film risultato chiamata axios -->
-    <ul>
-      <li v-for="result in apiResults" :key="result.id">
-        <div class="title">Titolo: {{result.title}}</div>
-        <div class="title">Titolo originale: {{result.original_title}}</div>
-        <div class="title">Lingua originale: <span><img :src="getLanguageFlag(result)"
-              :alt="result.original_language"></span></div>
-        <div class="title">Voto: {{result.vote_average}}</div>
-      </li>
-    </ul>
+    <div v-else class="container">
+      <ul>
+        <li v-for="result in apiResults" :key="result.id">
+          <div class="title">Titolo: {{result.title}}</div>
+          <div class="title">Titolo originale: {{result.original_title}}</div>
+          <div class="title">Lingua originale: <span><img :src="getLanguageFlag(result)"
+                :alt="result.original_language"></span></div>
+          <div class="title">Voto: {{result.vote_average}}</div>
+        </li>
+      </ul>
+    </div>
 
   </div>
 </template>
 
 <script>
 import SearchComponent from '@/components/utils/SearchComponent.vue';
+import LoaderComponent from '@/components/utils/LoaderComponent.vue';
+
+
 export default {
   name: "MainComponent",
   data() {
@@ -28,7 +37,8 @@ export default {
     };
   },
   props: {
-    apiResults: Array
+    apiResults: Array,
+    loading: Boolean
   },
   methods: {
     getSearchTitle() {
@@ -68,7 +78,10 @@ export default {
       this.$emit("search", textToSearch);
     }
   },
-  components: { SearchComponent }
+  components: {
+    SearchComponent,
+    LoaderComponent
+  }
 }
 </script>
 

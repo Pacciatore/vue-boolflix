@@ -15,6 +15,6 @@ export default {
 <style lang="scss" scoped>
 div {
     background-color: #00000065;
-    height: 100vh;
+    height: 100%;
 }
 </style>

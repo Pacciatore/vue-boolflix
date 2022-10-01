@@ -1,8 +1,7 @@
 <template>
   <div id="app">
 
-    <LoaderComponent v-if="loading" />
-    <MainComponent v-else-if="errorMessage.length === 0" :apiResults="results" @search="getFilms" />
+    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :apiResults="results" @search="getFilms" />
     <div v-else>{{ errorMessage }}</div>
 
 
@@ -15,7 +14,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 
 import MainComponent from '@/components/MainComponent.vue';
-import LoaderComponent from '@/components/utils/LoaderComponent.vue';
 
 export default {
   name: 'App',
@@ -81,8 +79,7 @@ export default {
 
   },
   components: {
-    MainComponent,
-    LoaderComponent
+    MainComponent
   }
 }
 </script>
