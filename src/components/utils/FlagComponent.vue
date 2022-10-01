@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <span>
 
         <img :src="getLanguageFlag(nationality)" :alt="nationality">
 
-    </div>
+    </span>
 </template>
 
 <script>
