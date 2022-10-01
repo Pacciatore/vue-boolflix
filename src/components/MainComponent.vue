@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
 
     <!-- Utilizzo di un componente per la ricerca -->
     <div class="container py-5">
@@ -22,7 +22,7 @@
 
     </div>
 
-  </div>
+  </main>
 </template>
 
 <script>
@@ -93,5 +93,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/style/variables.scss';
 
+main {
+  background-color: $tr-bg-mockup;
+  color: white;
+}
 </style>
