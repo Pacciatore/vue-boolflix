@@ -1,8 +1,9 @@
 <template>
   <div id="app">
 
-    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :tvSeries="tvSeries" :movies="movies"
-      @search="search" />
+    <HeaderComponent @search="search" />
+
+    <MainComponent :loading="loading" v-if="errorMessage.length === 0" :tvSeries="tvSeries" :movies="movies" />
     <div v-else>{{ errorMessage }}</div>
 
 
@@ -17,6 +18,7 @@ import axios from 'axios';
 import { apiKey } from '@/env'
 
 import MainComponent from '@/components/MainComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 
 export default {
   name: 'App',
@@ -72,15 +74,24 @@ export default {
 
   },
   components: {
-    MainComponent
+    MainComponent,
+    HeaderComponent
   }
 }
 </script>
 
 <style lang="scss">
+@import '@/assets/style/variables.scss';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  height: 100vh;
+
+  background-color: $tr-bg-mockup;
+  color: white;
+
 }
 </style>

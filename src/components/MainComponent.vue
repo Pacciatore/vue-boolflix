@@ -1,11 +1,6 @@
 <template>
   <main>
 
-    <!-- Utilizzo di un componente per la ricerca -->
-    <div class="container py-5">
-      <SearchComponent @search="getSearchText" />
-    </div>
-
     <LoaderComponent v-if="loading" />
 
     <!-- Elenco film risultato chiamata axios -->
@@ -26,7 +21,6 @@
 </template>
 
 <script>
-import SearchComponent from '@/components/utils/SearchComponent.vue';
 import LoaderComponent from '@/components/utils/LoaderComponent.vue';
 
 import TvSerieCardComponent from '@/components/content/TvSerieCardComponent.vue';
@@ -46,10 +40,6 @@ export default {
     loading: Boolean
   },
   methods: {
-    getSearchTitle() {
-      console.log("Ricerca su: ", this.inputText);
-      this.$emit("search", this.inputText);
-    },
     getLanguageFlag(result) {
       let langFlag = "";
       // Controllo i casi in cui il codice lingua non coincide col codice bandiera
@@ -77,14 +67,9 @@ export default {
       // Attribuisco il codice bandiera esatto e restituisco l'url
       const flagUrl = `https://flagcdn.com/16x12/${langFlag}.png`;
       return flagUrl;
-    },
-    getSearchText(textToSearch) {
-      console.log("Nel main ottengo: ", textToSearch);
-      this.$emit("search", textToSearch);
     }
   },
   components: {
-    SearchComponent,
     LoaderComponent,
     TvSerieCardComponent,
     MovieCardComponent
@@ -93,10 +78,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/style/variables.scss';
 
-main {
-  background-color: $tr-bg-mockup;
-  color: white;
-}
 </style>
