@@ -1,7 +1,9 @@
 <template>
     <span>
 
-        <img :src="getLanguageFlag(nationality)" :alt="nationality">
+        <img v-if="!loadError" @error="loadError = true" :src="getLanguageFlag(nationality)" :alt="nationality">
+
+        <span v-else>{{nationality}}</span>
 
     </span>
 </template>
@@ -9,6 +11,11 @@
 <script>
 export default {
     name: 'FlagComponent',
+    data() {
+        return {
+            loadError: false
+        }
+    },
     props: {
         nationality: String
     },
@@ -30,7 +37,10 @@ export default {
                     langFlag = "dk";
                     break;
                 // Lingue indiane: hindi, telugu
-                case "hi", "te":
+                case "hi":
+                    langFlag = "in";
+                    break;
+                case "te":
                     langFlag = "in";
                     break;
                 default:
