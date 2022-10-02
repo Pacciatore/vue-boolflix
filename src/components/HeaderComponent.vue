@@ -1,9 +1,12 @@
 <template>
-    <header>
+    <header class="pt-4 pb-1">
 
-        <!-- Utilizzo di un componente per la ricerca -->
-        <div class="container py-5">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <h1 class="brand-name text-uppercase">Boolflix</h1>
+
             <SearchComponent @search="getSearchText" />
+
         </div>
 
     </header>
@@ -31,5 +34,10 @@ export default {
 
 header {
     background-color: $tr-header-bg;
+
+    .brand-name {
+        color: $tr-brand-color;
+    }
+
 }
 </style>
