@@ -89,6 +89,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   height: 100vh;
+  overflow-y: auto;
 
   background-color: $tr-bg-mockup;
   color: white;

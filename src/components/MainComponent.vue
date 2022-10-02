@@ -1,10 +1,11 @@
 <template>
-  <main>
+  <main class="container py-5">
 
     <LoaderComponent v-if="loading" />
 
     <!-- Elenco film risultato chiamata axios -->
-    <div v-else class="container d-flex">
+    <div v-else class="results-container d-flex justify-content-center">
+
       <div class="movies col-5">
         <h2>Film</h2>
         <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie" />
