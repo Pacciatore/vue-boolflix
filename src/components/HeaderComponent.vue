@@ -5,7 +5,7 @@
 
             <h1 class="brand-name text-uppercase">Boolflix</h1>
 
-            <SearchComponent @search="getSearchText" />
+            <SearchComponent class="col-2" @search="getSearchText" />
 
         </div>
 

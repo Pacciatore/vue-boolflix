@@ -1,7 +1,12 @@
 <template>
     <div class="search-area">
-        <input type="text" placeholder="Inserire elemento da cercare" v-model="inputText" @keyup.enter="getSearchTitle">
-        <button @click="getSearchTitle">Cerca</button>
+
+        <input class="w-100" type="text" placeholder="Inserire elemento da cercare" v-model="inputText"
+            @keyup.enter="getSearchTitle">
+
+        <!--         Eliminazione bottone di ricerca per questioni estetiche
+        <button @click="getSearchTitle">Cerca</button> -->
+
     </div>
 </template>
 
