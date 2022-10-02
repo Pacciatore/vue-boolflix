@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <header>
 
         <!-- Utilizzo di un componente per la ricerca -->
         <div class="container py-5">
             <SearchComponent @search="getSearchText" />
         </div>
 
-    </div>
+    </header>
 </template>
 
 <script>
@@ -27,5 +27,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/variables.scss';
 
+header {
+    background-color: $tr-header-bg;
+}
 </style>
