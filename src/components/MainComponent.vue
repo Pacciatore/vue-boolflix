@@ -4,15 +4,15 @@
     <LoaderComponent v-if="loading" />
 
     <!-- Elenco film risultato chiamata axios -->
-    <div v-else class="results-container d-flex justify-content-center">
+    <div v-else class="results-container d-flex flex-column justify-content-center">
 
-      <div class="movies col-5">
-        <h2>Film</h2>
+      <div class="movies col d-flex flex-wrap gap-5">
+        <h2 class="col-12">Film</h2>
         <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie" />
       </div>
 
-      <div class="tv-series col-5">
-        <h2>Serie TV</h2>
+      <div class="tv-series col d-flex flex-wrap gap-5">
+        <h2 class="col-12">Serie TV</h2>
         <TvSerieCardComponent v-for="tvSerie in tvSeries" :key="tvSerie.id" :tv="tvSerie" />
       </div>
 
