@@ -8,7 +8,9 @@
         <div class="title">Lingua originale:
             <FlagComponent :nationality="movie.original_language" />
         </div>
-        <div class="title">Voto: {{movie.vote_average}}</div>
+        <div class="title">Voto:
+            <StarVoteComponent :vote="movie.vote_average" />
+        </div>
 
     </div>
 </template>
@@ -16,6 +18,7 @@
 <script>
 import FlagComponent from '@/components/utils/FlagComponent.vue';
 import PosterComponent from '@/components/utils/PosterComponent.vue';
+import StarVoteComponent from '@/components/utils/StarVoteComponent.vue';
 
 export default {
     name: "MovieCardComponent",
@@ -24,7 +27,8 @@ export default {
     },
     components: {
         FlagComponent,
-        PosterComponent
+        PosterComponent,
+        StarVoteComponent
     }
 }
 </script>
