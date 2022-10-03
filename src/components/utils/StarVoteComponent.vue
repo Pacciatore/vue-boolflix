@@ -1,28 +1,23 @@
 <template>
     <span>
 
-        <font-awesome-icon icon="fa-solid fa-star" />
-
-        <font-awesome-icon v-if="voteMaxFive > 1" icon="fa-solid fa-star" />
-        <font-awesome-icon v-else icon="fa-regular fa-star" />
-
-        <font-awesome-icon v-if="voteMaxFive > 2" icon="fa-solid fa-star" />
-        <font-awesome-icon v-else icon="fa-regular fa-star" />
-
-        <font-awesome-icon v-if="voteMaxFive > 3" icon="fa-solid fa-star" />
-        <font-awesome-icon v-else icon="fa-regular fa-star" />
-
-        <font-awesome-icon v-if="voteMaxFive > 4" icon="fa-solid fa-star" />
-        <font-awesome-icon v-else icon="fa-regular fa-star" />
+        <font-awesome-icon v-for="index in max" :key="index" :icon="[
+            index <= voteMaxFive ? 'fa-solid' : 'fa-regular',
+            'fa-star'
+        ]" />
 
     </span>
 </template>
 
 <script>
+const MAX_STARS = 5;
+const VOTE_BASE = 10;
+
 export default {
     name: 'StarVoteComponent',
     data() {
         return {
+            max: MAX_STARS,
             voteMaxFive: 1
         }
     },
@@ -34,7 +29,7 @@ export default {
     },
     methods: {
         voteToMaxFive() {
-            this.voteMaxFive = Math.ceil(this.vote / 2);
+            this.voteMaxFive = Math.ceil(this.vote / VOTE_BASE * MAX_STARS);
         }
     }
 }
