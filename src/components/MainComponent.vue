@@ -6,14 +6,24 @@
     <!-- Elenco film risultato chiamata axios -->
     <div v-else class="results-container d-flex flex-column justify-content-center">
 
-      <div class="movies col d-flex flex-wrap gap-5">
+      <div class="movies col d-flex flex-column">
         <h2 class="col-12">Film</h2>
-        <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie" />
+
+        <div class="card-container d-flex gap-5">
+          <MovieCardComponent class="card-element flex-shrink-0" v-for="movie in movies" :key="movie.id"
+            :movie="movie" />
+        </div>
+
       </div>
 
-      <div class="tv-series pt-5 col d-flex flex-wrap gap-5">
+      <div class="tv-series pt-5 col d-flex flex-column">
         <h2 class="col-12">Serie TV</h2>
-        <TvSerieCardComponent v-for="tvSerie in tvSeries" :key="tvSerie.id" :tv="tvSerie" />
+
+        <div class="card-container d-flex gap-5">
+          <TvSerieCardComponent class="card-element flex-shrink-0" v-for="tvSerie in tvSeries" :key="tvSerie.id"
+            :tv="tvSerie" />
+        </div>
+
       </div>
 
     </div>
@@ -79,5 +89,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.card-container {
 
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    // TODO: aggiungere un pulsante per lo scorrimento
+
+    // display: none;
+  }
+
+  .card-element {
+    width: 344px;
+  }
+}
 </style>
