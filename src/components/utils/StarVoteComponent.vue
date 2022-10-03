@@ -4,12 +4,16 @@
         <font-awesome-icon icon="fa-solid fa-star" />
 
         <font-awesome-icon v-if="voteMaxFive > 1" icon="fa-solid fa-star" />
+        <font-awesome-icon v-else icon="fa-regular fa-star" />
 
         <font-awesome-icon v-if="voteMaxFive > 2" icon="fa-solid fa-star" />
+        <font-awesome-icon v-else icon="fa-regular fa-star" />
 
         <font-awesome-icon v-if="voteMaxFive > 3" icon="fa-solid fa-star" />
+        <font-awesome-icon v-else icon="fa-regular fa-star" />
 
         <font-awesome-icon v-if="voteMaxFive > 4" icon="fa-solid fa-star" />
+        <font-awesome-icon v-else icon="fa-regular fa-star" />
 
     </span>
 </template>
