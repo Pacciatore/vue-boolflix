@@ -2,7 +2,7 @@
     <span>
 
         <font-awesome-icon v-for="index in max" :key="index" :icon="[
-            index <= voteMaxFive ? 'fa-solid' : 'fa-regular',
+            index <= stars ? 'fa-solid' : 'fa-regular',
             'fa-star'
         ]" />
 
@@ -17,19 +17,15 @@ export default {
     name: 'StarVoteComponent',
     data() {
         return {
-            max: MAX_STARS,
-            voteMaxFive: 1
+            max: MAX_STARS
         }
     },
     props: {
         vote: Number
     },
-    created() {
-        this.voteToMaxFive();
-    },
-    methods: {
-        voteToMaxFive() {
-            this.voteMaxFive = Math.ceil(this.vote / VOTE_BASE * MAX_STARS);
+    computed: {
+        stars() {
+            return Math.ceil(this.vote / VOTE_BASE * MAX_STARS);
         }
     }
 }
