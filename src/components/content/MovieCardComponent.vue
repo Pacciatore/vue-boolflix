@@ -1,15 +1,34 @@
 <template>
-    <div>
+    <div class="card position-relative rounded-0">
 
         <PosterComponent :posterEndPath="movie.poster_path" :posterName="movie.original_title" />
 
-        <div class="title">Titolo: {{movie.title}}</div>
-        <div class="title">Titolo originale: {{movie.original_title}}</div>
-        <div class="title">Lingua originale:
-            <FlagComponent :nationality="movie.original_language" />
-        </div>
-        <div class="title">Voto:
-            <StarVoteComponent :vote="movie.vote_average" />
+        <div class="movie-info position-absolute h-100 w-100 py-5 px-3">
+
+            <div class="info-element">
+                <span class="fw-bold pe-1">Titolo:</span> <span>{{movie.title}}</span>
+            </div>
+
+            <div class="info-element">
+                <span class="fw-bold pe-1">Titolo originale:</span> <span>{{movie.original_title}}</span>
+            </div>
+
+            <div class="info-element">
+                <span class="fw-bold pe-1">Lingua originale:</span>
+                <FlagComponent :nationality="movie.original_language" />
+            </div>
+
+            <div class="info-element">
+                <span class="fw-bold pe-1">Voto:</span>
+                <StarVoteComponent :vote="movie.vote_average" />
+            </div>
+
+            <div class="info-element">
+                <span class="fw-bold pe-1">Descrizione:</span>
+                <span v-if="movie.overview.length === 0">Descrizione non disponibile</span>
+                <span v-else>{{movie.overview}}</span>
+            </div>
+
         </div>
 
     </div>
@@ -34,5 +53,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.movie-info {
+    opacity: 0;
+    top: 0;
+    background-color: black;
 
+    transition: all 0.1s;
+
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &:hover {
+        opacity: 1;
+        cursor: default;
+    }
+
+    .info-element {
+        *:nth-child(2) {
+            color: #ffffffe0;
+        }
+    }
+
+}
 </style>
