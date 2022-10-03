@@ -1,15 +1,16 @@
 <template>
   <main class="container py-5">
 
-    <LoaderComponent v-if="loading" />
 
     <!-- Elenco film risultato chiamata axios -->
-    <div v-else class="results-container d-flex flex-column justify-content-center">
+    <div class="results-container d-flex flex-column justify-content-center">
 
       <div class="movies col d-flex flex-column">
         <h2 class="col-12">Film</h2>
 
-        <div class="card-container d-flex gap-5">
+        <LoaderComponent v-if="loading" />
+
+        <div v-else class="card-container d-flex gap-5">
           <MovieCardComponent class="card-element flex-shrink-0" v-for="movie in movies" :key="movie.id"
             :movie="movie" />
         </div>
@@ -19,7 +20,9 @@
       <div class="tv-series pt-5 col d-flex flex-column">
         <h2 class="col-12">Serie TV</h2>
 
-        <div class="card-container d-flex gap-5">
+        <LoaderComponent v-if="loading" />
+
+        <div v-else class="card-container d-flex gap-5">
           <TvSerieCardComponent class="card-element flex-shrink-0" v-for="tvSerie in tvSeries" :key="tvSerie.id"
             :tv="tvSerie" />
         </div>
@@ -89,6 +92,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.movies,
+.tv-series {
+  min-height: 532px;
+}
+
 .card-container {
 
   overflow-x: auto;

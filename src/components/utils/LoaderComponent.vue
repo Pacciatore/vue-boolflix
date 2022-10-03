@@ -1,5 +1,5 @@
 <template>
-    <div class="w-100 d-flex justify-content-center align-items-center">
+    <div class="w-100 h-100 d-flex justify-content-center align-items-center">
 
         LOADING...
 
@@ -15,6 +15,5 @@ export default {
 <style lang="scss" scoped>
 div {
     background-color: #00000065;
-    height: 100%;
 }
 </style>
