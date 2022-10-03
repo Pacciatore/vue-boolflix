@@ -50,7 +50,7 @@ export default {
         })
         .catch((e) => {
           this.loading = false;
-          this.errorMessage = 'Error: ' + e.message;
+          this.errorMessage = 'Error: ' + e.message + '   Reload page!';
           console.log(e)
         })
 
@@ -61,7 +61,7 @@ export default {
         })
         .catch((e) => {
           this.loading = false;
-          this.errorMessage = 'Error: ' + e.message;
+          this.errorMessage = 'Error: ' + e.message + '   Reload page!';
           console.log(e)
         })
 
