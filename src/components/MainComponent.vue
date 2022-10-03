@@ -11,7 +11,7 @@
         <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie" />
       </div>
 
-      <div class="tv-series col d-flex flex-wrap gap-5">
+      <div class="tv-series pt-5 col d-flex flex-wrap gap-5">
         <h2 class="col-12">Serie TV</h2>
         <TvSerieCardComponent v-for="tvSerie in tvSeries" :key="tvSerie.id" :tv="tvSerie" />
       </div>
