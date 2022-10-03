@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex">
+    <span>
 
         <font-awesome-icon icon="fa-solid fa-star" />
 
@@ -11,7 +11,7 @@
 
         <font-awesome-icon v-if="voteMaxFive > 4" icon="fa-solid fa-star" />
 
-    </div>
+    </span>
 </template>
 
 <script>
